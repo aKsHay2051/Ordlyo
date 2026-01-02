@@ -1,3 +1,10 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "app-preview",
+      "description": "A preview of the OrderEase application interface, showing a clean list of orders.",
+      "imageUrl": "https://images.unsplash.com/photo-1587573089019-741049f7a75f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhcHAlMjBzY3JlZW5zaG90fGVufDB8fHx8MTc2NzMwMDE1NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "app screenshot"
+    }
+  ]
 }
