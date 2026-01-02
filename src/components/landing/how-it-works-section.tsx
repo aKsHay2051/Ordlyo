@@ -1,33 +1,29 @@
-import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Card } from '@/components/ui/card';
-import { MessageSquare, Save, CheckCircle } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { MessageSquare, Save, CheckCircle, ArrowRight } from 'lucide-react';
 
 const steps = [
     {
-        icon: <MessageSquare className="h-8 w-8 text-accent" />,
-        title: 'Step 1: Get Orders',
-        description: 'Your customers send their orders via WhatsApp, just like they always do. No changes for them.',
+        icon: <MessageSquare className="h-10 w-10 text-primary" />,
+        title: 'Get Orders',
+        description: 'Your customers send orders via WhatsApp, just as they always have. No changes for them.',
     },
     {
-        icon: <Save className="h-8 w-8 text-accent" />,
-        title: 'Step 2: Auto-Saved',
-        description: 'OrderEase automatically detects and saves the order details into a simple, clean dashboard for you.',
+        icon: <Save className="h-10 w-10 text-primary" />,
+        title: 'Auto-Saved',
+        description: 'OrderEase automatically detects and saves order details into a simple, clean dashboard for you.',
     },
     {
-        icon: <CheckCircle className="h-8 w-8 text-accent" />,
-        title: 'Step 3: Track & Fulfill',
-        description: 'Confirm the order, update its status (Packed, Shipped, Delivered), and keep everything organized.',
+        icon: <CheckCircle className="h-10 w-10 text-primary" />,
+        title: 'Track & Fulfill',
+        description: 'Confirm orders, update their status, and keep everything neatly organized from one place.',
     }
 ];
 
 export function HowItWorksSection() {
-    const previewImage = PlaceHolderImages.find(img => img.id === 'app-preview');
-
     return (
-        <section className="w-full py-12 sm:py-16 lg:py-20">
+        <section className="w-full py-20 md:py-28 lg:py-32 bg-background">
             <div className="container mx-auto px-4 md:px-6">
-                <div className="flex flex-col items-center space-y-8 text-center mb-12">
+                <div className="flex flex-col items-center space-y-6 text-center mb-12 md:mb-16">
                     <div className="space-y-4">
                         <h2 className="text-3xl font-bold tracking-tighter font-headline sm:text-4xl md:text-5xl">
                             Simple, Automatic, and Clear.
@@ -38,32 +34,26 @@ export function HowItWorksSection() {
                     </div>
                 </div>
 
-                <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-                    <div className="flex flex-col gap-8">
+                <div className="relative">
+                    <div className="hidden md:flex absolute top-1/2 left-0 w-full h-0.5 -translate-y-1/2">
+                        <div className="w-full bg-border"></div>
+                    </div>
+                    <div className="grid gap-8 md:grid-cols-3 md:gap-12 relative">
                         {steps.map((step, index) => (
-                            <div key={index} className="flex items-start gap-4 text-left">
-                                <div className="flex-shrink-0">{step.icon}</div>
-                                <div>
-                                    <h3 className="text-lg font-bold">{step.title}</h3>
-                                    <p className="text-muted-foreground">{step.description}</p>
-                                </div>
+                            <div key={index} className="flex flex-col items-center text-center">
+                                <Card className="w-full shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                    <CardHeader className="items-center">
+                                        <div className="bg-primary/10 p-4 rounded-full mb-4 ring-8 ring-background">
+                                            {step.icon}
+                                        </div>
+                                        <CardTitle className="text-xl">{index + 1}. {step.title}</CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p className="text-muted-foreground">{step.description}</p>
+                                    </CardContent>
+                                </Card>
                             </div>
                         ))}
-                    </div>
-
-                    <div className="flex items-center justify-center">
-                        {previewImage && (
-                            <Card className="overflow-hidden shadow-2xl rounded-xl">
-                                <Image
-                                    src={previewImage.imageUrl}
-                                    alt={previewImage.description}
-                                    data-ai-hint={previewImage.imageHint}
-                                    width={1000}
-                                    height={750}
-                                    className="object-cover"
-                                />
-                            </Card>
-                        )}
                     </div>
                 </div>
             </div>
