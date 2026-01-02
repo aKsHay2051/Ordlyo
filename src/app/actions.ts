@@ -72,7 +72,14 @@ export async function getLeads(): Promise<{ leads: WithId<Document>[] | null; er
         const client = await connectToDatabase();
         const db = client.db(dbName);
         const collection = db.collection("waitlist");
-        const leads = await collection.find({}).sort({ submittedAt: -1 }).toArray();
+        const leadsResult = await collection.find({}).sort({ submittedAt: -1 }).toArray();
+        
+        // Convert ObjectId to string for serialization
+        const leads = leadsResult.map(lead => ({
+            ...lead,
+            _id: lead._id.toString(),
+        }));
+
         return { leads, error: null };
     } catch (error) {
         console.error('Failed to fetch leads:', error);
