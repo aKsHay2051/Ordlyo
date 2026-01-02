@@ -77,7 +77,8 @@ export default function PrivacyPage() {
                 <div className="space-y-2">
                     <h2 className="text-2xl font-semibold text-foreground">8. Contact Us</h2>
                     <p>
-                    If you have questions or comments about this Privacy Policy, please contact us at [Your Contact Email].
+                    If you have questions or comments about this Privacy Policy, please contact us at devluzofficial@gmail.com
+                      .
                     </p>
                 </div>
             </div>
