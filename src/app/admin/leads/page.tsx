@@ -10,6 +10,8 @@ import {
 import { logOut } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 
+export const runtime = 'nodejs';
+
 export default async function LeadsPage() {
   const { leads, error } = await getLeads();
 
