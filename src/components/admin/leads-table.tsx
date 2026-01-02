@@ -21,7 +21,7 @@ export function LeadsTable({ leads }: LeadsTableProps) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Contact (WhatsApp)</TableHead>
+            <TableHead>Email</TableHead>
             <TableHead>Sells</TableHead>
             <TableHead>Daily Orders</TableHead>
             <TableHead>Tracking Method</TableHead>
@@ -32,7 +32,7 @@ export function LeadsTable({ leads }: LeadsTableProps) {
         <TableBody>
           {leads.map((lead) => (
             <TableRow key={lead._id.toString()}>
-              <TableCell className="font-medium">{lead.contact || 'N/A'}</TableCell>
+              <TableCell className="font-medium">{lead.email || 'N/A'}</TableCell>
               <TableCell className="text-muted-foreground">{lead.productType || 'N/A'}</TableCell>
               <TableCell className="text-muted-foreground">{lead.dailyOrders || 'N/A'}</TableCell>
               <TableCell className="text-muted-foreground">{lead.trackingMethod || 'N/A'}</TableCell>

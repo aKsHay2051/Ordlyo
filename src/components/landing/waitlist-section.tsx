@@ -23,7 +23,7 @@ export function WaitlistSection() {
   const form = useForm<WaitlistFormValues>({
     resolver: zodResolver(waitlistSchema),
     defaultValues: {
-      contact: "",
+      email: "",
       productType: undefined,
       dailyOrders: undefined,
       trackingMethod: undefined,
@@ -71,19 +71,19 @@ export function WaitlistSection() {
               <div className="flex flex-col items-center justify-center space-y-4 text-center p-8 bg-green-50 rounded-lg">
                 <CheckCircle className="h-16 w-16 text-green-600" />
                 <h3 className="text-2xl font-bold">You're on the list!</h3>
-                <p className="text-muted-foreground">Thank you for signing up. We'll be in touch on WhatsApp with updates soon.</p>
+                <p className="text-muted-foreground">Thank you for signing up. We'll be in touch with updates soon.</p>
               </div>
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                   <FormField
                     control={form.control}
-                    name="contact"
+                    name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Your WhatsApp number</FormLabel>
+                        <FormLabel>Your Email Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="+91 12345 67890" {...field} />
+                          <Input placeholder="you@example.com" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -212,7 +212,7 @@ export function WaitlistSection() {
                     )}
                   </Button>
                   <p className="text-center text-xs text-muted-foreground">
-                    We’ll contact you only on WhatsApp for product updates. No spam.
+                    We’ll email you with product updates. No spam.
                   </p>
                 </form>
               </Form>

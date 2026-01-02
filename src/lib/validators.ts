@@ -7,9 +7,7 @@ const phoneRegex = new RegExp(
 );
 
 export const waitlistSchema = z.object({
-  contact: z.string()
-    .min(1, { message: "WhatsApp number is required." })
-    .regex(phoneRegex, "Please enter a valid phone number."),
+  email: z.string().email({ message: "Please enter a valid email address." }),
   productType: z.string().optional(),
   dailyOrders: z.string().optional(),
   trackingMethod: z.string().optional(),
