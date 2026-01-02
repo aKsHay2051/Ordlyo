@@ -11,11 +11,11 @@ export function HeroSection() {
               Stop losing orders in WhatsApp.
             </h1>
             <p className="mx-auto max-w-[700px] text-lg text-muted-foreground md:text-xl">
-              Go from chat history chaos to organized orders, instantly. OrderEase saves your customer orders automatically, so you can focus on your business.
+              Go from chat history chaos to organized orders, instantly. OrderEase helps you track every order without messy spreadsheets.
             </p>
           </div>
           <div className="space-x-4">
-            <Button asChild size="lg" className="font-bold">
+            <Button asChild size="lg" className="font-bold bg-accent text-accent-foreground hover:bg-accent/90">
               <a href="#waitlist">
                 Join the Early Access Waitlist
                 <ArrowDown className="ml-2 h-5 w-5" />

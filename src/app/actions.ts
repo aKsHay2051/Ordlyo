@@ -1,30 +1,25 @@
 "use server";
 
+import { MongoClient } from "mongodb";
 import { waitlistSchema, WaitlistFormValues } from "@/lib/validators";
 
-// This is a mock of sending a WhatsApp message. In a real application,
-// you would use a service like Twilio or the WhatsApp Business API.
-async function sendWhatsAppMessage(data: WaitlistFormValues) {
-  const projectName = "OrderEase";
-  const message = `
-New lead from ${projectName}!
-Contact: ${data.contact}
-Feedback: ${data.feedback || "No feedback provided."}
-  `;
+// Ensure the MongoDB URI is set in your environment variables
+const uri = process.env.MONGODB_URI;
+const dbName = process.env.MONGODB_DB_NAME || "orderease";
 
-  console.log("--- SIMULATING WHATSAPP MESSAGE ---");
-  console.log(`To: [Your WhatsApp Number]`);
-  console.log(`Message: ${message}`);
-  
-  // Simulate network delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
+if (!uri) {
+  throw new Error("Please define the MONGODB_URI environment variable inside .env.local");
+}
 
-  // Simulate a potential error for demonstration
-  if (data.contact.includes("error")) {
-    throw new Error("Simulated API error.");
+let cachedClient: MongoClient | null = null;
+
+async function connectToDatabase() {
+  if (cachedClient) {
+    return cachedClient;
   }
-  
-  return { success: true };
+  const client = new MongoClient(uri);
+  cachedClient = await client.connect();
+  return cachedClient;
 }
 
 export async function submitWaitlist(
@@ -40,10 +35,21 @@ export async function submitWaitlist(
   }
 
   try {
-    await sendWhatsAppMessage(validatedFields.data);
+    const client = await connectToDatabase();
+    const db = client.db(dbName);
+    const collection = db.collection("waitlist");
+
+    const submission = {
+      contact: validatedFields.data.contact,
+      feedback: validatedFields.data.feedback || null,
+      submittedAt: new Date(),
+    };
+
+    await collection.insertOne(submission);
+
     return { success: true, message: "You've been added to the waitlist!" };
   } catch (error) {
-    console.error("Failed to send WhatsApp message:", error);
+    console.error("Failed to save to MongoDB:", error);
     return {
       success: false,
       message: "An unexpected error occurred. Please try again later.",
