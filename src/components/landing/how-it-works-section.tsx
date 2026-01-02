@@ -10,7 +10,7 @@ const steps = [
     {
         icon: <Save className="h-10 w-10 text-primary" />,
         title: 'Order is saved automatically',
-        description: 'OrderEase detects and saves order details into a simple, clean dashboard for you.',
+        description: 'Ordlyo detects and saves order details into a simple, clean dashboard for you.',
     },
     {
         icon: <CheckCircle className="h-10 w-10 text-primary" />,
@@ -21,11 +21,11 @@ const steps = [
 
 export function HowItWorksSection() {
     return (
-        <section className="w-full py-20 md:py-28 lg:py-32 bg-background">
+        <section className="w-full py-20 md:py-28 lg:py-32 bg-secondary">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex flex-col items-center space-y-6 text-center mb-12 md:mb-16">
                     <div className="space-y-4">
-                        <h2 className="text-3xl font-bold tracking-tighter font-headline sm:text-4xl md:text-5xl">
+                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                             How It Works
                         </h2>
                         <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">

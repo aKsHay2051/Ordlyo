@@ -56,11 +56,11 @@ export function WaitlistSection() {
       <div className="container mx-auto px-4 md:px-6">
         <Card className="max-w-2xl mx-auto shadow-xl bg-card rounded-xl">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-bold tracking-tighter font-headline sm:text-4xl">
+            <CardTitle className="text-3xl font-bold tracking-tighter sm:text-4xl">
               Join the Early Access Waitlist
             </CardTitle>
             <CardDescription className="md:text-lg text-muted-foreground">
-              Be the first to know when OrderEase is available.
+              Be the first to know when Ordlyo is available.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -106,7 +106,7 @@ export function WaitlistSection() {
                     )}
                   />
 
-                  <Button type="submit" className="w-full font-bold bg-accent text-accent-foreground hover:bg-accent/90" size="lg" disabled={isPending}>
+                  <Button type="submit" className="w-full font-bold bg-primary text-primary-foreground hover:bg-primary/90" size="lg" disabled={isPending}>
                     {isPending ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
