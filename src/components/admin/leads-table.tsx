@@ -9,7 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 
 interface LeadsTableProps {
@@ -22,18 +21,22 @@ export function LeadsTable({ leads }: LeadsTableProps) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Contact</TableHead>
-            <TableHead>Feedback</TableHead>
+            <TableHead>Contact (WhatsApp)</TableHead>
+            <TableHead>Sells</TableHead>
+            <TableHead>Daily Orders</TableHead>
+            <TableHead>Tracking Method</TableHead>
+            <TableHead>Price Comfort</TableHead>
             <TableHead className="text-right">Submitted At</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {leads.map((lead) => (
             <TableRow key={lead._id.toString()}>
-              <TableCell className="font-medium">{lead.contact}</TableCell>
-              <TableCell className="text-muted-foreground max-w-sm truncate">
-                {lead.feedback || "N/A"}
-              </TableCell>
+              <TableCell className="font-medium">{lead.contact || 'N/A'}</TableCell>
+              <TableCell className="text-muted-foreground">{lead.productType || 'N/A'}</TableCell>
+              <TableCell className="text-muted-foreground">{lead.dailyOrders || 'N/A'}</TableCell>
+              <TableCell className="text-muted-foreground">{lead.trackingMethod || 'N/A'}</TableCell>
+              <TableCell className="text-muted-foreground">{lead.priceComfort || 'N/A'}</TableCell>
               <TableCell className="text-right text-muted-foreground">
                 {format(new Date(lead.submittedAt), "PPP p")}
               </TableCell>

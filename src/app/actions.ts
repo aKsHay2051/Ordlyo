@@ -36,9 +36,11 @@ export async function submitWaitlist(
   const validatedFields = waitlistSchema.safeParse(data);
 
   if (!validatedFields.success) {
+    // Return a more specific error message from the validation result
+    const firstError = validatedFields.error.errors[0];
     return {
       success: false,
-      message: "Invalid data provided. Please check your input and try again.",
+      message: firstError?.message || "Invalid data provided.",
     };
   }
 
@@ -47,9 +49,9 @@ export async function submitWaitlist(
     const db = client.db(dbName);
     const collection = db.collection("waitlist");
 
+    // Include all fields from the validated data
     const submission = {
-      contact: validatedFields.data.contact,
-      feedback: validatedFields.data.feedback || null,
+      ...validatedFields.data,
       submittedAt: new Date(),
     };
 

@@ -7,19 +7,13 @@ const phoneRegex = new RegExp(
 );
 
 export const waitlistSchema = z.object({
-  contact: z.string().min(1, { message: "Email or phone number is required." }),
-  feedback: z.string().max(500, { message: "Feedback must be 500 characters or less."}).optional(),
-}).superRefine((data, ctx) => {
-    const isEmail = z.string().email().safeParse(data.contact).success;
-    const isPhone = phoneRegex.test(data.contact);
-
-    if (!isEmail && !isPhone) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Please enter a valid email or phone number.",
-        path: ["contact"],
-      });
-    }
+  contact: z.string()
+    .min(1, { message: "WhatsApp number is required." })
+    .regex(phoneRegex, "Please enter a valid phone number."),
+  productType: z.string().optional(),
+  dailyOrders: z.string().optional(),
+  trackingMethod: z.string().optional(),
+  priceComfort: z.string().optional(),
 });
 
 export type WaitlistFormValues = z.infer<typeof waitlistSchema>;
